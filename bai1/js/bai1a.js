@@ -22,7 +22,7 @@ form.addEventListener('submit', function (e) {
         `;
     } else {
         resultElement.innerHTML = `
-            <p>Vui lòng nhập đầy đủ thông tin vào!</p>
+            <p style="color: red">Vui lòng nhập đầy đủ thông tin vào!</p>
         `;
     }
 

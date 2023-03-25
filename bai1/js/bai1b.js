@@ -10,14 +10,20 @@ form.addEventListener('submit', async function (e) {
         }
     }
     var daySo = formValue['dayso'];
-    var arDaySo = daySo.split(",");
-    var tong = 0;
-    for (var i = 0; i < arDaySo.length; i++) {
-        tong += Number(arDaySo[i]);
-    }
-
     var resultElement = document.getElementById('result');
-    resultElement.innerHTML = `
-        <p>Tổng của dãy số là: ${tong}</p>
+    if (daySo) {
+        var arDaySo = daySo.split(",");
+        var tong = 0;
+        for (var i = 0; i < arDaySo.length; i++) {
+            tong += Number(arDaySo[i]);
+        }
+
+        resultElement.innerHTML = `
+            <p>Tổng của dãy số là: ${tong}</p>
+        `;
+    } else {
+        resultElement.innerHTML = `
+        <p style="color: red">Vui lòng nhập dãy số!</p>
     `;
+    }
 })
