@@ -1,5 +1,24 @@
 var form = document.forms.form;
 
+/**
+ * Hàm để xử lý khi blur vào ô input
+ * @param {*} input 
+ */
+function handleBlurInput(input) {
+    var errorElement = input.parentElement.querySelector('.form-message');
+    input.onblur = function () {
+        if (input.value === '') {
+            errorElement.setAttribute('style', 'color: red; font-style: italic;');
+            errorElement.innerText = 'Vui lòng nhập';
+        } else {
+            errorElement.innerText = '';
+        }
+    }
+}
+
+var daySoElement = document.querySelector('input[name="dayso"]');
+handleBlurInput(daySoElement);
+
 form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
