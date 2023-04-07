@@ -17,3 +17,5 @@
 
 ## Bài 4:
 ![alt text](bai4/bai4.jpg)
+
+## Bài 5: Xem code và ghi chép những gì học được
