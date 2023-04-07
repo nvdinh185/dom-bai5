@@ -14,7 +14,7 @@ form.addEventListener('submit', function (e) {
     var tuthaythe = formValue['tuthaythe'];
     var errorElement = document.getElementById('error');
     if (!chuoigoc || !tugoc || !tuthaythe) {
-        errorElement.innerHTML = `<p style="color: red">Vui lòng nhập đầy đủ thông tin vào!</p>`;
+        errorElement.innerHTML = `<p style="color: red; font-style: italic;">Vui lòng nhập đầy đủ thông tin vào!</p>`;
     } else {
         errorElement.innerHTML = '';
         var chuoithaythe = chuoigoc.replace(tugoc, tuthaythe);
