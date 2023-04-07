@@ -42,7 +42,7 @@ form.addEventListener('submit', async function (e) {
         `;
     } else {
         resultElement.innerHTML = `
-        <p style="color: red">Vui lòng nhập dãy số!</p>
+        <p style="color: red; font-style: italic;">Vui lòng nhập dãy số!</p>
     `;
     }
 })
