@@ -2,13 +2,13 @@
 ![alt text](bai1/bai1a.jpg)
 
 ### Nếu chưa nhập mà bấm submit thì hiện thông báo lỗi
-![alt text](bai1/hinh1a.jpg)
+![alt text](bai1/error1a.jpg)
 
 ## Bài 1b: Tạo form để nhập dãy số. Khi bấm submit thì tính tổng của dãy số đã nhập
 ![alt text](bai1/bai1b.jpg)
 
 ### Nếu chưa nhập mà bấm submit thì hiện thông báo lỗi
-![alt text](bai1/hinh1b.jpg)
+![alt text](bai1/error1b.jpg)
 ## Bài 2: 
 ![alt text](bai2/bai2.jpg)
 
