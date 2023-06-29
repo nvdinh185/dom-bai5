@@ -17,6 +17,10 @@ function handleBlurInput(input) {
             errorElement.innerText = '';
         }
     }
+
+    input.oninput = function () {
+        errorElement.setAttribute('style', 'display: none;');
+    }
 }
 
 handleBlurInput(chieuDaiElement);
