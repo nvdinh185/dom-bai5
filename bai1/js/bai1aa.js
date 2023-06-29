@@ -10,16 +10,19 @@ var chieuRongElement = document.querySelector('input[name="chieurong"]');
 function handleBlurInput(input) {
     var errorElement = input.parentElement.querySelector('.form-message');
     input.onblur = function () {
-        if (input.value === '') {
+        if (input.value.trim() === '') {
             errorElement.setAttribute('style', 'color: red; font-style: italic;');
             errorElement.innerText = 'Vui lòng nhập';
+            input.parentElement.querySelector(".form-control").classList.add('invalid');
         } else {
             errorElement.innerText = '';
+            input.parentElement.querySelector(".form-control").classList.remove('invalid');
         }
     }
 
     input.oninput = function () {
         errorElement.setAttribute('style', 'display: none;');
+        input.parentElement.querySelector(".form-control").classList.remove('invalid');
     }
 }
 

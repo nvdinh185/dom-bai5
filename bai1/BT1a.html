@@ -4,19 +4,25 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>HCN</title>
+	<style>
+		.invalid {
+			border: 2px solid red;
+			border-radius: 5px;
+		}
+	</style>
 </head>
 
 <body>
 	<form>
 		<div>
 			<label>Chiều dài</label>
-			<input type="text" name="chieudai" />
+			<input type="text" name="chieudai" class="form-control" />
 			<span class="form-message"></span>
 		</div>
 		<br />
 		<div>
 			<label>Chiều rộng</label>
-			<input type="text" name="chieurong" />
+			<input type="text" name="chieurong" class="form-control" />
 			<span class="form-message"></span>
 		</div>
 		<input type="submit" value="Tinh" />
