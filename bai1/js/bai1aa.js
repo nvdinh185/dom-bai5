@@ -13,16 +13,16 @@ function handleBlurInput(input) {
         if (input.value.trim() === '') {
             errorElement.setAttribute('style', 'color: red; font-style: italic;');
             errorElement.innerText = 'Vui lòng nhập';
-            input.parentElement.querySelector(".form-control").classList.add('invalid');
+            input.classList.add('invalid');
         } else {
             errorElement.innerText = '';
-            input.parentElement.querySelector(".form-control").classList.remove('invalid');
+            input.classList.remove('invalid');
         }
     }
 
     input.oninput = function () {
         errorElement.setAttribute('style', 'display: none;');
-        input.parentElement.querySelector(".form-control").classList.remove('invalid');
+        input.classList.remove('invalid');
     }
 }
 
