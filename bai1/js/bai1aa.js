@@ -32,13 +32,10 @@ handleBlurInput(chieuRongElement);
 submitElement.onclick = function (e) {
     e.preventDefault();
 
-    var chieuDai = Number(chieuDaiElement.value);
-    var chieuRong = Number(chieuRongElement.value);
-
     var resultElement = document.getElementById('result');
-    if (chieuDai && chieuRong) {
-        var chuVi = (chieuDai + chieuRong) * 2;
-        var dienTich = chieuDai * chieuRong;
+    if (chieuDaiElement.value !== '' && chieuRongElement.value !== '') {
+        var chuVi = (Number(chieuDaiElement.value) + Number(chieuRongElement.value)) * 2;
+        var dienTich = chieuDaiElement.value * chieuRongElement.value;
         resultElement.innerHTML = `
             <p>Chu vi: ${chuVi}</p>
             <p>Diện tích: ${dienTich}</p>
