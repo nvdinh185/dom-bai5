@@ -1,28 +1,35 @@
-var form = document.forms.form;
+var form = $('form');
 
-var chieuDaiElement = document.querySelector('input[name="chieudai"]');
-var chieuRongElement = document.querySelector('input[name="chieurong"]');
+var chieuDaiElement = $('input[name="chieudai"]');
+var chieuRongElement = $('input[name="chieurong"]');
 
 /**
  * Hàm để xử lý khi blur vào ô input
- * @param {*} input 
+ * @param {*} input
  */
 function handleBlurInput(input) {
-    var errorElement = input.parentElement.querySelector('.form-message');
-    input.onblur = function () {
-        if (input.value === '') {
-            errorElement.setAttribute('style', 'color: red; font-style: italic;');
-            errorElement.innerText = 'Vui lòng nhập';
+    var errorElement = input.parent().children()[2];
+    input.blur(function () {
+        if (input.val().trim() === '') {
+            $(errorElement).attr('style', 'color: red; font-style: italic;');
+            $(errorElement).text('Vui lòng nhập');
+            input.addClass('invalid');
         } else {
-            errorElement.innerText = '';
+            $(errorElement).text('');
+            input.removeClass('invalid');
         }
-    }
+    })
+
+    input.on('input', function () {
+        $(errorElement).attr('style', 'display: none;');
+        input.removeClass('invalid');
+    })
 }
 
 handleBlurInput(chieuDaiElement);
 handleBlurInput(chieuRongElement);
 
-form.addEventListener('submit', function (e) {
+form.on("submit", function (e) {
     e.preventDefault();
 
     const formValue = {};
@@ -34,18 +41,18 @@ form.addEventListener('submit', function (e) {
     var chieuDai = Number(formValue['chieudai']);
     var chieuRong = Number(formValue['chieurong']);
 
-    var resultElement = document.getElementById('result');
+    var resultElement = $('#result');
     if (chieuDai && chieuRong) {
         var chuVi = (chieuDai + chieuRong) * 2;
         var dienTich = chieuDai * chieuRong;
-        resultElement.innerHTML = `
+        resultElement.html(`
             <p>Chu vi: ${chuVi}</p>
             <p>Diện tích: ${dienTich}</p>
-        `;
+        `);
     } else {
-        resultElement.innerHTML = `
+        resultElement.html(`
             <p style="color: red">Vui lòng nhập đầy đủ thông tin vào!</p>
-        `;
+        `);
     }
 
 })
