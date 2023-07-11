@@ -1,49 +1,49 @@
-var submitElement = document.querySelector('input[type="submit"]');
+var submitElement = $('input[type="submit"]');
 
-var chieuDaiElement = document.querySelector('input[name="chieudai"]');
-var chieuRongElement = document.querySelector('input[name="chieurong"]');
+var chieuDaiElement = $('input[name="chieudai"]');
+var chieuRongElement = $('input[name="chieurong"]');
 
 /**
  * Hàm để xử lý khi blur vào ô input
  * @param {*} input 
  */
 function handleBlurInput(input) {
-    var errorElement = input.parentElement.querySelector('.form-message');
-    input.onblur = function () {
-        if (input.value.trim() === '') {
-            errorElement.setAttribute('style', 'color: red; font-style: italic;');
-            errorElement.innerText = 'Vui lòng nhập';
-            input.classList.add('invalid');
+    var errorElement = input.parent().children()[2];
+    input.blur(function () {
+        if (input.val().trim() === '') {
+            $(errorElement).attr('style', 'color: red; font-style: italic;');
+            $(errorElement).text('Vui lòng nhập');
+            input.addClass('invalid');
         } else {
-            errorElement.innerText = '';
-            input.classList.remove('invalid');
+            $(errorElement).text('');
+            input.removeClass('invalid');
         }
-    }
+    })
 
-    input.oninput = function () {
-        errorElement.setAttribute('style', 'display: none;');
-        input.classList.remove('invalid');
-    }
+    input.on('input', function () {
+        $(errorElement).attr('style', 'display: none;');
+        input.removeClass('invalid');
+    })
 }
 
 handleBlurInput(chieuDaiElement);
 handleBlurInput(chieuRongElement);
 
-submitElement.onclick = function (e) {
+submitElement.click(function (e) {
     e.preventDefault();
 
-    var resultElement = document.getElementById('result');
-    if (chieuDaiElement.value !== '' && chieuRongElement.value !== '') {
-        var chuVi = (Number(chieuDaiElement.value) + Number(chieuRongElement.value)) * 2;
-        var dienTich = chieuDaiElement.value * chieuRongElement.value;
-        resultElement.innerHTML = `
+    var resultElement = $('#result');
+    if (chieuDaiElement.val() !== '' && chieuRongElement.val() !== '') {
+        var chuVi = (Number(chieuDaiElement.val()) + Number(chieuRongElement.val())) * 2;
+        var dienTich = chieuDaiElement.val() * chieuRongElement.val();
+        resultElement.html(`
             <p>Chu vi: ${chuVi}</p>
             <p>Diện tích: ${dienTich}</p>
-        `;
+        `);
     } else {
-        resultElement.innerHTML = `
+        resultElement.html(`
             <p style="color: red">Vui lòng nhập đầy đủ thông tin vào!</p>
-        `;
+        `);
     }
 
-}
+})
