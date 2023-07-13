@@ -30,8 +30,6 @@ form.addEventListener('submit', function (e) {
     }
     var hoten = formValue['hoten'];
     if (hoten) {
-        var inputElement = document.querySelector('input[name="hoten"]');
-        inputElement.value = hoten;
         var greetingElement = document.getElementById('greeting');
         greetingElement.innerHTML = `Câu chào: <strong>Chào bạn ${hoten}</strong>`;
     }
