@@ -18,8 +18,3 @@
 
 ## Bài 4:
 ![alt text](bai4/bai4.jpg)
-
-### Nếu chưa nhập mà bấm submit thì hiện thông báo lỗi
-![alt text](bai4/bai4err.jpg)
-
-## Bài 5: Xem code và ghi chép những gì học được
