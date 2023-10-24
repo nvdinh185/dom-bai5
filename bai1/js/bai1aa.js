@@ -4,7 +4,7 @@ var chieuDaiElement = document.querySelector('input[name="chieudai"]');
 var chieuRongElement = document.querySelector('input[name="chieurong"]');
 
 /**
- * Hàm để xử lý khi blur vào ô input
+ * Hàm để xử lý khi blur hoặc nhập vào ô input
  * @param {*} input 
  */
 function handleBlurInput(input) {
@@ -12,11 +12,8 @@ function handleBlurInput(input) {
     input.onblur = function () {
         if (input.value.trim() === '') {
             errorElement.setAttribute('style', 'color: red; font-style: italic;');
-            errorElement.innerText = 'Vui lòng nhập';
+            errorElement.innerText = 'Yêu cầu nhập!';
             input.classList.add('invalid');
-        } else {
-            errorElement.innerText = '';
-            input.classList.remove('invalid');
         }
     }
 
@@ -32,18 +29,30 @@ handleBlurInput(chieuRongElement);
 submitElement.onclick = function (e) {
     e.preventDefault();
 
-    var resultElement = document.getElementById('result');
-    if (chieuDaiElement.value !== '' && chieuRongElement.value !== '') {
+    function isRequired(input) {
+        var errorElement = input.parentElement.querySelector('.form-message');
+        if (input.value.trim() === '') {
+            errorElement.setAttribute('style', 'display: block; color: red; font-style: italic;');
+            errorElement.innerText = 'Yêu cầu nhập!';
+            input.classList.add('invalid');
+            return true;
+        }
+    }
+    var check = true;
+    if (isRequired(chieuDaiElement)) {
+        check = false;
+    }
+    if (isRequired(chieuRongElement)) {
+        check = false;
+    }
+
+    if (check) {
+        var resultElement = document.getElementById('result');
         var chuVi = (Number(chieuDaiElement.value) + Number(chieuRongElement.value)) * 2;
         var dienTich = chieuDaiElement.value * chieuRongElement.value;
         resultElement.innerHTML = `
             <p>Chu vi: ${chuVi}</p>
             <p>Diện tích: ${dienTich}</p>
         `;
-    } else {
-        resultElement.innerHTML = `
-            <p style="color: red">Vui lòng nhập đầy đủ thông tin vào!</p>
-        `;
     }
-
 }
