@@ -9,7 +9,8 @@
 
 ### Xử lý validation khi không nhập
 ![alt text](bai1/error1b.jpg)
-## Bài 2: 
+
+## Bài 2: Khi người dùng nhập tên và bấm Submit thì in ra câu chào như bên dưới, hiển thị lại tên người dùng đã nhập trước đó trong ô input. Nếu chưa nhập tên mà bấm Submit thì không in ra câu chào.
 ![alt text](bai2/bai2.jpg)
 
 ## Bài 3:
