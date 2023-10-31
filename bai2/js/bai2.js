@@ -1,18 +1,22 @@
 var form = document.forms.form;
 
 /**
- * Hàm để xử lý khi blur vào ô input
+ * Hàm để xử lý khi blur hoặc nhập vào ô input
  * @param {*} input 
  */
 function handleBlurInput(input) {
     var errorElement = input.parentElement.querySelector('.form-message');
     input.onblur = function () {
-        if (input.value === '') {
-            errorElement.setAttribute('style', 'color: red; font-style: italic;');
-            errorElement.innerText = 'Vui lòng nhập';
-        } else {
-            errorElement.innerText = '';
+        if (input.value.trim() === '') {
+            errorElement.setAttribute('style', 'display: block; color: red; font-style: italic;');
+            errorElement.innerText = 'Yêu cầu nhập!';
+            input.classList.add('invalid');
         }
+    }
+
+    input.oninput = function () {
+        errorElement.setAttribute('style', 'display: none;');
+        input.classList.remove('invalid');
     }
 }
 
@@ -21,15 +25,30 @@ handleBlurInput(hotenElement);
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
-
-    const formValue = {};
-    for (const el of e.target) {
-        if (el.name) {
-            formValue[el.name] = el.value;
+    function isRequired(input) {
+        var errorElement = input.parentElement.querySelector('.form-message');
+        if (input.value.trim() === '') {
+            errorElement.setAttribute('style', 'display: block; color: red; font-style: italic;');
+            errorElement.innerText = 'Yêu cầu nhập!';
+            input.classList.add('invalid');
+            return true;
         }
     }
-    var hoten = formValue['hoten'];
-    if (hoten) {
+    var check = true;
+    if (isRequired(hotenElement)) {
+        check = false;
+    }
+
+    if (check) {
+
+        // Lấy giá trị nhập vào từ các ô input
+        const formValue = {};
+        for (const el of e.target) {
+            if (el.name) {
+                formValue[el.name] = el.value;
+            }
+        }
+        var hoten = formValue['hoten'];
         var greetingElement = document.getElementById('greeting');
         greetingElement.innerHTML = `Câu chào: <strong>Chào bạn ${hoten}</strong>`;
     }
