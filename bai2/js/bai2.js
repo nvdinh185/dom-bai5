@@ -1,25 +1,29 @@
-var form = document.forms.form;
+var form = $('#inputForm');
 
 /**
  * Hàm để xử lý khi blur vào ô input
  * @param {*} input 
  */
 function handleBlurInput(input) {
-    var errorElement = input.parentElement.querySelector('.form-message');
-    input.onblur = function () {
-        if (input.value === '') {
-            errorElement.setAttribute('style', 'color: red; font-style: italic;');
-            errorElement.innerText = 'Vui lòng nhập';
-        } else {
-            errorElement.innerText = '';
+    var errorElement = input.next();
+    input.on('blur', function () {
+        if (input.val() === '') {
+            errorElement.attr('style', 'color: red; font-style: italic;');
+            errorElement.text('Vui lòng nhập');
+            input.addClass('invalid');
         }
-    }
+    })
+
+    input.on('input', function () {
+        errorElement.attr('style', 'display: none;');
+        input.removeClass('invalid');
+    })
 }
 
-var hotenElement = document.querySelector('input[name="hoten"]');
+var hotenElement = $('input[name="hoten"]');
 handleBlurInput(hotenElement);
 
-form.addEventListener('submit', function (e) {
+form.on("submit", function (e) {
     e.preventDefault();
 
     const formValue = {};
@@ -30,9 +34,9 @@ form.addEventListener('submit', function (e) {
     }
     var hoten = formValue['hoten'];
     if (hoten) {
-        var inputElement = document.querySelector('input[name="hoten"]');
-        inputElement.value = hoten;
-        var greetingElement = document.getElementById('greeting');
-        greetingElement.innerHTML = `Câu chào: <strong>Chào bạn ${hoten}</strong>`;
+        var inputElement = $('input[name="hoten"]');
+        inputElement.val(hoten);
+        var greetingElement = $('#greeting');
+        greetingElement.html(`Câu chào: <strong>Chào bạn ${hoten}</strong>`);
     }
 })
