@@ -49,15 +49,15 @@ form.on("submit", function (e) {
             }
         }
         var daySo = formValue['dayso'];
-        var resultElement = document.getElementById('result');
+        var resultElement = $('#result');
         var arDaySo = daySo.split(",");
         var tong = 0;
         for (var i = 0; i < arDaySo.length; i++) {
             tong += Number(arDaySo[i]);
         }
 
-        resultElement.innerHTML = `
+        resultElement.html(`
             <p>Tổng của dãy số là: ${tong}</p>
-        `;
+        `);
     }
 })

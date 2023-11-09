@@ -7,7 +7,7 @@ var form = $('#inputForm');
 function handleBlurInput(input) {
     var errorElement = input.next();
     input.on('blur', function () {
-        if (input.val() === '') {
+        if (input.val().trim() === '') {
             errorElement.attr('style', 'color: red; font-style: italic;');
             errorElement.text('Vui lòng nhập');
             input.addClass('invalid');
