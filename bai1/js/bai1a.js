@@ -13,13 +13,13 @@ function handleBlurInput(input) {
         if (input.val().trim() === '') {
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
             $(errorElement).text('Yêu cầu nhập!');
-            input.addClass('invalid');
+            input.attr('class', 'invalid');
         }
     })
 
     input.on('input', function () {
         $(errorElement).attr('style', 'display: none;');
-        input.removeClass('invalid');
+        input.attr('class', '');
     })
 }
 
@@ -34,7 +34,7 @@ form.on("submit", function (e) {
         if (input.val().trim() === '') {
             $(errorElement).attr('style', 'display: block; color: red; font-style: italic;');
             $(errorElement).text('Yêu cầu nhập!');
-            input.addClass('invalid');
+            input.attr('class', 'invalid');
             return true;
         }
     }
