@@ -1,6 +1,6 @@
-var form = document.forms.form;
+var form = $('#inputForm');
 
-form.addEventListener('submit', function (e) {
+form.on("submit", function (e) {
     e.preventDefault();
 
     const formValue = {};
@@ -11,20 +11,20 @@ form.addEventListener('submit', function (e) {
     }
     var bankinh;
     var dientich;
-    var errorElement = document.getElementById('error');
+    var errorElement = $('#error');
     if ((formValue['bankinh'] && formValue['dientich']) || (!formValue['bankinh'] && !formValue['dientich'])) {
-        errorElement.innerHTML = `<p style="color: red; font-style: italic;">Vui lòng nhập 1 trong 2 giá trị</p>`;
+        errorElement.html(`<p style="color: red; font-style: italic;">Vui lòng nhập 1 trong 2 giá trị</p>`);
     } else if (formValue['bankinh']) {
-        errorElement.innerHTML = '';
+        errorElement.html('');
         bankinh = formValue['bankinh'];
         dientich = bankinh * bankinh * 3.14;
-        var inputElement = document.querySelector('input[name="dientich"]');
-        inputElement.value = dientich.toFixed(2);
+        var inputElement = $('input[name="dientich"]');
+        inputElement.val(dientich.toFixed(2));
     } else {
-        errorElement.innerHTML = '';
+        errorElement.html('');
         dientich = formValue['dientich'];
         bankinh = Math.sqrt(dientich / 3.14);
-        var inputElement = document.querySelector('input[name="bankinh"]');
-        inputElement.value = bankinh.toFixed(2);
+        var inputElement = $('input[name="bankinh"]');
+        inputElement.val(bankinh.toFixed(2));
     }
 })
